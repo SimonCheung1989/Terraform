@@ -1,4 +1,5 @@
 azure-terraform-beginners/
 vagrant-learning/
 terraform-provider-aws/
-*/.terraform/
+**/.terraform/
+**/beconf.tfvars
