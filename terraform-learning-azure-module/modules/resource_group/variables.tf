@@ -1,7 +1,6 @@
 variable "location" {}
 
-variable "name" {
-  default = "rg_20181001"
+variable "azurerm_resource_group_name" {
 }
 
 variable "env" {}
