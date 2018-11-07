@@ -21,3 +21,15 @@ variable "azurerm_storage_container_name" {
 variable "azurerm_storage_blob_name" {
   default = "sb20181001"
 }
+
+variable "prefix" {
+  default = "vm-20181001"
+}
+
+variable "address_space" {
+  default = "10.0.0.0/16"
+}
+
+variable "subnet1_address_space" {
+  default = "10.0.1.0/24"
+}
