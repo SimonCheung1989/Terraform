@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  deis-workflow:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2018-11-11T22:42:10.369879+08:00
+    description: A Helm chart for Kubernetes
+    digest: 05d0148c28093a733dc598c6aad80d9a0422432eccff26da3a6674f3069b53b3
+    name: deis-workflow
+    urls:
+    - deis-workflow-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2018-11-11T22:42:10.369598+08:00
+    description: A Helm chart for Kubernetes
+    digest: 3551d5299dd426178574e3e887a13c718905d9cee53184094abb79d5b5a6a3e4
+    name: deis-workflow
+    urls:
+    - deis-workflow-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-11-11T22:42:10.36802+08:00

@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: apm-agent
+  labels:
+    app: apm-agent
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: apm-agent
+    spec:
+      containers:
+      - name: apm-agent
+        image: 192.168.191.199:5000/dynamics-demoapp:v0.0.1
+        volumeMounts:
+          - mountPath: /apm-agent
+            name: app-agent
+          - mountPath: /var/run/docker.sock
+            name: docker
+        env:
+          - name: APPDYNAMICS_CONTROLLER_HOST_NAME
+            value: "lee201811072338099.saas.appdynamics.com"
+          - name: APPDYNAMICS_CONTROLLER_PORT
+            value: "443"
+          - name: APPDYNAMICS_CONTROLLER_SSL_ENABLED
+            value: "true"
+          - name: APPDYNAMICS_AGENT_ACCOUNT_NAME
+            value: "lee201811072338099"
+          - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+            value: "cdcd8jxi2ieh"
+          - name: APPDYNAMICS_AGENT_NODE_NAME
+            value: "appd-node-test"
+          - name: APPDYNAMICS_AGENT_APPLICATION_NAME
+            value: "Node"
+          - name: APPDYNAMICS_AGENT_TIER_NAME
+            value: "Node"
+          - name: MACHINE_AGENT_PROPERTIES
+            value: "-Dappdynamics.sim.enabled=true -Dappdynamics.docker.enabled=true"
+      volumes:
+        - name: app-agent
+          hostPath:
+            path: /opt/app-agent
+        - name: docker
+          hostPath:
+            path: /var/run/docker.sock

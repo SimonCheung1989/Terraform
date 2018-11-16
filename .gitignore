@@ -3,3 +3,5 @@ vagrant-learning/
 terraform-provider-aws/
 **/.terraform/
 **/beconf.tfvars
+**/*.jar
+**/.DS_Store

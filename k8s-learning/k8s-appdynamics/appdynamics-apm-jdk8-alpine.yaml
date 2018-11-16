@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jdk8-alpine
+  labels:
+    app: jdk8-alpine
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jdk8-alpine
+    spec:
+      containers:
+      - name: jdk8-alpine-container
+        image: store/appdynamics/java:4.5_jdk8-alpine
+        volumeMounts:
+          - mountPath: /app-agent
+            name: app-agent
+        env:
+          - name: APPDYNAMICS_CONTROLLER_HOST_NAME
+            value: "lee201811072338099.saas.appdynamics.com"
+          - name: APPDYNAMICS_CONTROLLER_PORT
+            value: "443"
+          - name: APPDYNAMICS_CONTROLLER_SSL_ENABLED
+            value: "true"
+          - name: APPDYNAMICS_AGENT_ACCOUNT_NAME
+            value: "lee201811072338099"
+          - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+            value: "cdcd8jxi2ieh"
+          - name: APPDYNAMICS_AGENT_NODE_NAME
+            value: "appd-test"
+          - name: APPDYNAMICS_AGENT_APPLICATION_NAME
+            value: "Application2"
+          - name: APPDYNAMICS_AGENT_TIER_NAME
+            value: "Tier"
+          - name: JAVA_OPS
+            value: "-javaagent:/opt/appdynamics/javaagent.jar ‑Dappdynamics.controller.hostName=lee201811072338099.saas.appdynamics.com -Dappdynamics.controller.port=443 -Dappdynamics.controller.ssl.enabled=true -Dappdynamics.agent.accountName=lee201811072338099 -Dappdynamics.agent.accountAccessKey=cdcd8jxi2ieh -Dappdynamics.agent.nodeName=node1 -Dappdynamics.agent.applicationName=demoapp -Dappdynamics.agent.tierName=tier1"
+      volumes:
+        - name: app-agent
+          hostPath:
+            path: /opt/app-agent
