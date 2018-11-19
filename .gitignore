@@ -5,3 +5,4 @@ terraform-provider-aws/
 **/beconf.tfvars
 **/*.jar
 **/.DS_Store
+**/*-c.yaml

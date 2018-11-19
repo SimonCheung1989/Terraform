@@ -1,23 +1,23 @@
 apiVersion: extensions/v1beta1
-kind: DaemonSet
+kind: Deployment
 metadata:
-  name: appdynamics-daemonset
+  name: apm-agent
   labels:
-    app: appdynamics-daemonset
-    version: v1
+    app: apm-agent
 spec:
+  replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
-        name: appdynamics-daemonset
-        app: appdynamics-daemonset
-        version: v1
+        app: apm-agent
     spec:
       containers:
-      - name: appdynamics-daemonset
-        image: store/appdynamics/machine:4.5
+      - name: apm-agent
+        image: 192.168.191.188:5000/appdynamics-demoapp:v0.0.5
         volumeMounts:
-          - mountPath: /app-agent
+          - mountPath: /apm-agent
             name: app-agent
           - mountPath: /var/run/docker.sock
             name: docker
@@ -32,6 +32,12 @@ spec:
             value: "lee201811072338099"
           - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
             value: "cdcd8jxi2ieh"
+          - name: APPDYNAMICS_AGENT_APPLICATION_NAME
+            value: "demoapp-20181115"
+          - name: APPDYNAMICS_AGENT_TIER_NAME
+            value: "tier1"
+          - name: APPDYNAMICS_AGENT_NODE_NAME
+            value: "node1"
           - name: MACHINE_AGENT_PROPERTIES
             value: "-Dappdynamics.sim.enabled=true -Dappdynamics.docker.enabled=true"
       volumes:
