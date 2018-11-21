@@ -7,3 +7,8 @@ pizzaToppings:
   - cheese
   - peppers
   - onions
+mysubchart:
+  dessert: KFC
+
+global:
+  salad: caesar
